@@ -216,8 +216,7 @@ export function Landing() {
               </span>
             </h1>
             <p className="mt-8 text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Centralisez vos operations, automatisez vos workflows et prenez des decisions
-              eclairees grace a des donnees en temps reel. Rejoignez 10 000+ entreprises.
+              Synchronisation multi-plateformes, automatisation des tâches, messagerie centralisée : Pilotez votre activité avec un suivi et des rapports en temps réel
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup">
