@@ -13,10 +13,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-slate-900 text-white hover:bg-slate-800 focus:ring-slate-500',
-  secondary: 'bg-slate-100 text-slate-900 hover:bg-slate-200 focus:ring-slate-400',
-  outline: 'border-2 border-slate-300 text-slate-700 hover:bg-slate-50 focus:ring-slate-400',
-  ghost: 'text-slate-700 hover:bg-slate-100 focus:ring-slate-400',
+  primary: 'bg-electric-violet text-white hover:bg-electric-violet/90 focus:ring-electric-violet shadow-neon hover:shadow-neon-lg',
+  secondary: 'bg-deep-blue text-white hover:bg-deep-blue/90 focus:ring-deep-blue',
+  outline: 'border-2 border-electric-violet/30 text-white hover:bg-electric-violet/10 focus:ring-electric-violet glass-effect',
+  ghost: 'text-white hover:bg-white/10 focus:ring-electric-violet',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
 };
 

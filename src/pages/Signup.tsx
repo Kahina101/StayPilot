@@ -56,10 +56,13 @@ export function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Link to="/" className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center">
+    <div className="min-h-screen bg-black-intense flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-glow opacity-30" />
+      <div className="absolute inset-0 bg-gradient-primary opacity-20" />
+
+      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+        <Link to="/" className="flex items-center justify-center gap-2 mb-8 group">
+          <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-neon group-hover:shadow-neon-lg transition-all">
             <LayoutDashboard className="w-7 h-7 text-white" />
           </div>
         </Link>
@@ -126,10 +129,10 @@ export function Signup() {
 
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200" />
+                <div className="w-full border-t border-electric-violet/20" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-slate-500">ou</span>
+                <span className="px-4 glass-effect text-white/60">ou</span>
               </div>
             </div>
 
@@ -162,9 +165,9 @@ export function Signup() {
               Continuer avec Google
             </Button>
 
-            <p className="mt-6 text-center text-sm text-slate-600">
+            <p className="mt-6 text-center text-sm text-white/60">
               Deja un compte ?{' '}
-              <Link to="/login" className="font-medium text-slate-900 hover:underline">
+              <Link to="/login" className="font-medium text-electric-violet hover:underline">
                 Se connecter
               </Link>
             </p>
