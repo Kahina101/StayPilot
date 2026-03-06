@@ -210,9 +210,9 @@ export function Landing() {
               <span className="text-white/90">Nouveau : Integrations Zapier disponibles</span>
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] animate-slide-up">
-              La plateforme qui
+              Moins de gestion, plus de locations :
               <span className="block gradient-text mt-2">
-                accelere votre business
+                centralisez toute votre conciergerie dans un seul outil
               </span>
             </h1>
             <p className="mt-8 text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
