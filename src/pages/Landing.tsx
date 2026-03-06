@@ -604,7 +604,7 @@ export function Landing() {
                 <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shadow-neon-sm">
                   <Building2 className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-bold text-white">AppName</span>
+                <span className="font-bold text-white">StayPilot</span>
               </div>
               <p className="text-white/60 text-sm leading-relaxed">
                 La plateforme qui accelere votre business. Simplifiez vos operations,
@@ -654,7 +654,7 @@ export function Landing() {
 
           <div className="pt-8 border-t border-electric-violet/10 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-white/50 text-sm">
-              2024 AppName. Tous droits reserves.
+              2024 StayPilot. Tous droits reserves.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-white/60 hover:text-electric-violet transition-colors text-sm">

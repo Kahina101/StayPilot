@@ -78,7 +78,7 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
           <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
             <Building2 className="w-5 h-5 text-white" />
           </div>
-          <span className="font-semibold text-slate-900">AppName</span>
+          <span className="font-semibold text-slate-900">StayPilot</span>
         </div>
         <div className="w-10" />
       </div>
@@ -95,7 +95,7 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
                 <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
                   <Building2 className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-semibold text-slate-900">AppName</span>
+                <span className="font-semibold text-slate-900">StayPilot</span>
               </div>
               <button
                 onClick={() => setSidebarOpen(false)}
@@ -123,7 +123,7 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
           <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
             <Building2 className="w-5 h-5 text-white" />
           </div>
-          <span className="font-semibold text-slate-900">AppName</span>
+          <span className="font-semibold text-slate-900">StayPilot</span>
         </div>
 
         <nav className="flex-1 p-4 space-y-1">
