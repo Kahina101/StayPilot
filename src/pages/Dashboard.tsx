@@ -20,28 +20,24 @@ const quickStats = [
     value: '12',
     change: '+2 ce mois',
     icon: FolderKanban,
-    color: 'bg-electric-violet/20 text-electric-violet',
   },
   {
     label: 'Membres equipe',
     value: '8',
     change: '+1 cette semaine',
     icon: Users,
-    color: 'bg-electric-violet/20 text-electric-violet',
   },
   {
     label: 'Taches terminees',
     value: '47',
     change: '+12 cette semaine',
     icon: CheckCircle2,
-    color: 'bg-deep-blue/50 text-white',
   },
   {
     label: 'Taux completion',
     value: '78%',
     change: '+5% vs mois dernier',
     icon: TrendingUp,
-    color: 'bg-electric-violet/20 text-electric-violet',
   },
 ];
 
@@ -99,11 +95,6 @@ const upcomingTasks = [
   },
 ];
 
-const priorityColors = {
-  high: 'bg-red-500/20 text-red-400',
-  medium: 'bg-yellow-500/20 text-yellow-400',
-  low: 'bg-white/10 text-white/60',
-};
 
 export function Dashboard() {
   const { user, profile } = useAuth();
@@ -129,26 +120,26 @@ export function Dashboard() {
     >
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
         {quickStats.map((stat) => (
-          <Card key={stat.label} className="hover:shadow-glow transition-all group">
+          <Card key={stat.label} className="bg-gradient-to-br from-blue-50 to-green-50 border-blue-200 hover:shadow-medium transition-all group">
             <CardContent>
               <div className="flex items-center justify-between mb-4">
-                <div className={`p-2.5 rounded-xl ${stat.color} group-hover:shadow-neon transition-all`}>
-                  <stat.icon className="w-5 h-5" />
+                <div className={`p-2.5 rounded-xl bg-primary-blue/10 group-hover:shadow-soft transition-all`}>
+                  <stat.icon className="w-5 h-5 text-primary-blue" />
                 </div>
               </div>
-              <p className="text-2xl font-bold gradient-text">{stat.value}</p>
-              <p className="text-sm text-white/60 mt-1">{stat.label}</p>
-              <p className="text-xs text-electric-violet mt-2">{stat.change}</p>
+              <p className="text-2xl font-bold text-primary-blue">{stat.value}</p>
+              <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
+              <p className="text-xs text-primary-green mt-2">{stat.change}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3 mb-8">
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2 bg-white border-gray-200">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Activity className="w-5 h-5" />
+            <CardTitle className="flex items-center gap-2 text-gray-900">
+              <Activity className="w-5 h-5 text-primary-blue" />
               Activite recente
             </CardTitle>
           </CardHeader>
@@ -157,21 +148,21 @@ export function Dashboard() {
               {recentActivity.map((activity) => (
                 <div
                   key={activity.id}
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-blue-50 transition-colors group"
                 >
-                  <div className="p-2 glass-effect rounded-lg group-hover:shadow-neon-sm transition-all">
-                    <activity.icon className="w-4 h-4 text-electric-violet" />
+                  <div className="p-2 bg-blue-50 rounded-lg group-hover:shadow-soft transition-all">
+                    <activity.icon className="w-4 h-4 text-primary-blue" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-white truncate">
+                    <p className="text-sm font-medium text-gray-900 truncate">
                       {activity.action}
                     </p>
-                    <p className="text-xs text-white/50">{activity.time}</p>
+                    <p className="text-xs text-gray-500">{activity.time}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-electric-violet/20">
+            <div className="mt-4 pt-4 border-t border-gray-200">
               <Button variant="ghost" size="sm" className="w-full">
                 Voir toute l'activite
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -180,10 +171,10 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-orange-200">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="w-5 h-5" />
+            <CardTitle className="flex items-center gap-2 text-gray-900">
+              <Clock className="w-5 h-5 text-orange-600" />
               Taches a venir
             </CardTitle>
           </CardHeader>
@@ -192,24 +183,28 @@ export function Dashboard() {
               {upcomingTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-3 rounded-lg border border-electric-violet/20 hover:border-electric-violet/50 hover:shadow-neon-sm transition-all group"
+                  className="p-3 rounded-lg bg-white border border-orange-200 hover:border-orange-300 hover:shadow-soft transition-all group"
                 >
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <p className="text-sm font-medium text-white line-clamp-1">
+                    <p className="text-sm font-medium text-gray-900 line-clamp-1">
                       {task.title}
                     </p>
-                    <span className={`flex-shrink-0 px-2 py-0.5 rounded text-xs font-medium ${priorityColors[task.priority as keyof typeof priorityColors]}`}>
+                    <span className={`flex-shrink-0 px-2 py-0.5 rounded text-xs font-medium ${
+                      task.priority === 'high' ? 'bg-red-100 text-red-700' :
+                      task.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                      'bg-gray-100 text-gray-600'
+                    }`}>
                       {task.priority === 'high' ? 'Urgent' : task.priority === 'medium' ? 'Normal' : 'Faible'}
                     </span>
                   </div>
-                  <p className="text-xs text-white/60 flex items-center gap-1">
+                  <p className="text-xs text-gray-600 flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {task.dueDate}
                   </p>
                 </div>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-electric-violet/20">
+            <div className="mt-4 pt-4 border-t border-orange-200">
               <Link to="/projects">
                 <Button variant="ghost" size="sm" className="w-full">
                   Voir tous les projets
@@ -222,10 +217,10 @@ export function Dashboard() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
+        <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
           <CardHeader>
-            <CardTitle>Acces rapides</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-gray-900">Acces rapides</CardTitle>
+            <CardDescription className="text-gray-600">
               Raccourcis vers les fonctionnalites principales
             </CardDescription>
           </CardHeader>
@@ -240,43 +235,43 @@ export function Dashboard() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="flex items-center gap-3 p-4 rounded-xl glass-effect hover:shadow-neon transition-all group"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white hover:shadow-soft transition-all group border border-purple-200"
                 >
-                  <item.icon className="w-5 h-5 text-electric-violet group-hover:scale-110 transition-transform" />
-                  <span className="font-medium text-white">{item.label}</span>
+                  <item.icon className="w-5 h-5 text-purple-600 group-hover:scale-110 transition-transform" />
+                  <span className="font-medium text-gray-900">{item.label}</span>
                 </Link>
               ))}
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white border-gray-200">
           <CardHeader>
-            <CardTitle>Informations du compte</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-gray-900">Informations du compte</CardTitle>
+            <CardDescription className="text-gray-600">
               Details de votre profil
             </CardDescription>
           </CardHeader>
           <CardContent>
             <dl className="space-y-4">
-              <div className="flex justify-between py-2 border-b border-electric-violet/20">
-                <dt className="text-white/60">Nom</dt>
-                <dd className="font-medium text-white">
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <dt className="text-gray-600">Nom</dt>
+                <dd className="font-medium text-gray-900">
                   {profile?.full_name || 'Non renseigne'}
                 </dd>
               </div>
-              <div className="flex justify-between py-2 border-b border-electric-violet/20">
-                <dt className="text-white/60">Email</dt>
-                <dd className="font-medium text-white">{user?.email}</dd>
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <dt className="text-gray-600">Email</dt>
+                <dd className="font-medium text-gray-900">{user?.email}</dd>
               </div>
-              <div className="flex justify-between py-2 border-b border-electric-violet/20">
-                <dt className="text-white/60">Membre depuis</dt>
-                <dd className="font-medium text-white">{createdAt}</dd>
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <dt className="text-gray-600">Membre depuis</dt>
+                <dd className="font-medium text-gray-900">{createdAt}</dd>
               </div>
               <div className="flex justify-between py-2">
-                <dt className="text-white/60">Statut</dt>
-                <dd className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-electric-violet/20 text-electric-violet shadow-neon-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-electric-violet shadow-neon-sm animate-glow-pulse" />
+                <dt className="text-gray-600">Statut</dt>
+                <dd className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse" />
                   Actif
                 </dd>
               </div>

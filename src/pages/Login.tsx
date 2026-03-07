@@ -46,21 +46,20 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-black-intense flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-glow opacity-30" />
-      <div className="absolute inset-0 bg-gradient-primary opacity-20" />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-purple-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-transparent to-green-100/50" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <Link to="/" className="flex items-center justify-center gap-2 mb-8 group">
-          <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-neon group-hover:shadow-neon-lg transition-all">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-500 rounded-xl flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all">
             <LayoutDashboard className="w-7 h-7 text-white" />
           </div>
         </Link>
 
-        <Card className="shadow-lg">
+        <Card className="shadow-large bg-white border-gray-200">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Connexion</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-2xl text-gray-900">Connexion</CardTitle>
+            <CardDescription className="text-gray-600">
               Entrez vos identifiants pour acceder a votre compte
             </CardDescription>
           </CardHeader>
@@ -96,7 +95,7 @@ export function Login() {
                 <div className="mt-2 text-right">
                   <Link
                     to="/forgot-password"
-                    className="text-sm text-white/60 hover:text-electric-violet transition-colors"
+                    className="text-sm text-gray-600 hover:text-primary-blue transition-colors"
                   >
                     Mot de passe oublie ?
                   </Link>
@@ -110,10 +109,10 @@ export function Login() {
 
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-electric-violet/20" />
+                <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 glass-effect text-white/60">ou</span>
+                <span className="px-4 bg-white text-gray-600">ou</span>
               </div>
             </div>
 
@@ -146,9 +145,9 @@ export function Login() {
               Continuer avec Google
             </Button>
 
-            <p className="mt-6 text-center text-sm text-white/60">
+            <p className="mt-6 text-center text-sm text-gray-600">
               Pas encore de compte ?{' '}
-              <Link to="/signup" className="font-medium text-electric-violet hover:underline">
+              <Link to="/signup" className="font-medium text-primary-blue hover:underline">
                 Creer un compte
               </Link>
             </p>
