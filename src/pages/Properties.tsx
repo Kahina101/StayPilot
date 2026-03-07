@@ -1,6 +1,6 @@
 import { AppLayout } from '../components/layout/AppLayout';
 import { Card, CardContent, Button } from '../components/ui';
-import { Plus, Search, Filter, MoreVertical, Edit, Trash2 } from 'lucide-react';
+import { Plus, Search, Filter, MoreVertical, CreditCard as Edit, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 const propertiesData = [
