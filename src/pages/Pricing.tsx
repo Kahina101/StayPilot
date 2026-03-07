@@ -81,35 +81,36 @@ export function Pricing() {
 
   const getFeaturesByTier = (tier: string) => {
     const standardFeatures = [
-      'Synchronisation Airbnb et Booking.com',
-      'Messagerie centralisée multi-plateformes',
-      'Automatisations basiques de communication',
-      'Gestion des réservations centralisée',
-      'Rapports basiques mensuels',
-      'Notifications mobiles en temps réel',
+      'Gestion simple des tâches',
+      'Un utilisateur',
+      'Support par email',
+      'Jusqu\'à 5 logements',
+      'Synchronisation Airbnb & Booking',
+      'Messagerie centralisée',
+      'Automatisations basiques',
     ];
 
     const proFeatures = [
-      ...standardFeatures,
-      'Synchronisation 15+ plateformes',
-      'Gestion d\'équipe et assignation des tâches',
-      'Automatisations avancées check-in/out',
-      'Analytics détaillés et prévisions',
-      'Application mobile iOS et Android',
-      'Prix dynamique basé sur la demande',
-      'Coordination automatique du ménage',
+      'Gestion multi-utilisateurs',
+      'Automatisation des tâches',
+      'Rapports avancés',
+      'Intégrations API',
+      'Toutes les plateformes',
+      'Gestion d\'équipe',
+      'Support prioritaire',
+      'Formation initiale incluse',
     ];
 
     const premiumFeatures = [
-      ...proFeatures,
-      'API personnalisée pour intégrations',
+      'Personnalisations sur mesure',
+      'Gestion multi-sites',
+      'KPI personnalisés',
+      'Formations dédiées',
+      'Support VIP 7j/7',
       'Account manager dédié',
-      'Analytics prédictifs avec IA',
-      'Interface en marque blanche',
-      'Support prioritaire sous 1h',
-      'Permissions avancées multi-équipes',
-      'Intégrations sur mesure',
-      'Optimisation revenus algorithmique',
+      'Consolidation des données',
+      'Workflows personnalisables',
+      'Alertes personnalisées',
     ];
 
     switch (tier) {
@@ -151,13 +152,13 @@ export function Pricing() {
             const isPro = tier.tier === 'pro';
             const isPremium = tier.tier === 'premium';
 
-            const displayName = tier.tier === 'standard' ? 'Solo' :
-                              tier.tier === 'pro' ? 'Professionnel' :
-                              'Entreprise';
+            const displayName = tier.tier === 'standard' ? 'Starter' :
+                              tier.tier === 'pro' ? 'Pro' :
+                              'Premium';
 
             const subtitle = tier.tier === 'standard' ? 'Pour les propriétaires indépendants' :
                            tier.tier === 'pro' ? 'Pour les conciergeries en croissance' :
-                           'Pour les grandes conciergeries';
+                           'Solution sur mesure et évolutive';
 
             return (
               <div
@@ -174,27 +175,40 @@ export function Pricing() {
                     {subtitle}
                   </p>
 
-                  <div className="mb-8">
+                  <div className="mb-6">
                     {isPremium ? (
                       <div>
                         <div className={`text-5xl font-bold mb-2 text-slate-900`}>
                           Sur mesure
                         </div>
+                        <p className={`text-sm text-slate-600`}>Contactez-nous pour un devis</p>
                       </div>
                     ) : (
                       <div>
                         <div className={`flex items-baseline gap-1 mb-2 ${isPro ? 'text-white' : 'text-slate-900'}`}>
                           <span className="text-5xl font-bold">
-                            {(tier.perpetual_price / 100).toFixed(0)}€
+                            {(tier.perpetual_price / 100).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}€
                           </span>
-                          <span className="text-lg">/mois</span>
                         </div>
+                        <p className={`text-sm mb-4 ${isPro ? 'text-blue-100' : 'text-slate-600'}`}>
+                          Licence unique
+                        </p>
+                        {tier.maintenancePricing && (
+                          <div className={`text-lg ${isPro ? 'text-white' : 'text-slate-900'}`}>
+                            <span className="font-semibold">
+                              {(tier.maintenancePricing.first_year_price / 100).toFixed(0)}€/mois
+                            </span>
+                            <p className={`text-sm mt-1 ${isPro ? 'text-blue-100' : 'text-slate-600'}`}>
+                              Maintenance mensuelle
+                            </p>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
 
-                  <div className="space-y-4 mb-8">
-                    {features.slice(0, tier.tier === 'standard' ? 6 : tier.tier === 'pro' ? 8 : 9).map((feature, index) => (
+                  <div className="space-y-3 mb-8">
+                    {features.map((feature, index) => (
                       <div key={index} className="flex items-start gap-3">
                         <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
                           isPro ? 'text-white' : 'text-green-600'
@@ -222,6 +236,68 @@ export function Pricing() {
               </div>
             );
           })}
+        </div>
+
+        <div className="max-w-4xl mx-auto space-y-8 mt-16">
+          <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-8 shadow-sm">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Pourquoi choisir Pro ?</h2>
+            <p className="text-slate-700 leading-relaxed">
+              La licence Pro inclut toutes les fonctionnalités essentielles : gestion multi-utilisateurs,
+              automatisation des tâches, rapports avancés et intégrations API. La licence Premium va plus loin :
+              elle offre une personnalisation sur mesure, un support VIP dédié, une gestion multi-sites, et des
+              analyses avancées avec alertes personnalisées. <strong>Optez pour Premium si vous avez besoin d'une
+              solution sur mesure, évolutive et de support ultra-réactif.</strong>
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 shadow-sm">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Premium : La solution complète</h2>
+            <p className="text-slate-700 leading-relaxed mb-4">
+              La licence Premium inclut tout de la Pro, mais en plus, elle permet une <strong>personnalisation
+              sur mesure de vos workflows</strong>, une gestion multi-sites avec consolidation des données,
+              un tableau de bord sur mesure avec des KPI spécifiques à votre activité, ainsi qu'un accompagnement
+              dédié avec un gestionnaire de compte.
+            </p>
+            <p className="text-slate-700 leading-relaxed">
+              Vous avez aussi des sessions de formation personnalisées et un <strong>support direct prioritaire,
+              disponible 7 jours sur 7.</strong>
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-200">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Récapitulatif des offres</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <h3 className="font-bold text-lg text-slate-900 mb-3">Offre A - Starter</h3>
+                <p className="text-3xl font-bold text-slate-900 mb-2">2 500 €</p>
+                <p className="text-sm text-slate-600 mb-3">Licence unique</p>
+                <p className="text-xl font-semibold text-blue-600 mb-2">79 €/mois</p>
+                <p className="text-sm text-slate-600">Maintenance mensuelle</p>
+              </div>
+
+              <div className="text-center bg-gradient-to-br from-blue-600 to-teal-400 rounded-xl p-6 text-white transform scale-105">
+                <h3 className="font-bold text-lg mb-3">Offre B - Pro</h3>
+                <p className="text-3xl font-bold mb-2">5 000 €</p>
+                <p className="text-sm text-blue-100 mb-3">Licence unique</p>
+                <p className="text-xl font-semibold mb-2">149 €/mois</p>
+                <p className="text-sm text-blue-100 mb-3">Maintenance mensuelle</p>
+                <div className="bg-white/20 rounded-lg px-3 py-1 inline-block">
+                  <p className="text-xs font-medium">Formation initiale incluse</p>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <h3 className="font-bold text-lg text-slate-900 mb-3">Offre C - Premium</h3>
+                <p className="text-3xl font-bold text-slate-900 mb-2">9 000 €</p>
+                <p className="text-sm text-slate-600 mb-3">Licence unique</p>
+                <p className="text-xl font-semibold text-blue-600 mb-2">299 €/mois</p>
+                <p className="text-sm text-slate-600 mb-3">Maintenance mensuelle</p>
+                <div className="bg-amber-100 border border-amber-300 rounded-lg px-3 py-1 inline-block">
+                  <p className="text-xs font-medium text-amber-900">Support prioritaire + personnalisations</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
