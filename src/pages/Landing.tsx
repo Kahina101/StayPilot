@@ -68,21 +68,21 @@ const stats = [
 const testimonials = [
   {
     quote: 'Grâce à StayPilot, je gère désormais 40 appartements au lieu de 15, sans embaucher de personnel supplémentaire.',
-    author: 'Sophie Mercier',
+    author: 'Sophie Lavandier',
     role: 'Propriétaire',
     company: 'Conciergerie du Marais',
     avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
   },
   {
     quote: 'L\'automatisation des messages et du check-in nous fait économiser 20 heures par semaine. Un vrai gain de temps !',
-    author: 'Marc Dubois',
+    author: 'Alexandre Beaumont',
     role: 'Gérant',
     company: 'Nice Riviera Stays',
     avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
   },
   {
     quote: 'Interface claire, fonctionnalités complètes et support réactif. Je recommande à tous les professionnels.',
-    author: 'Julie Petit',
+    author: 'Camille Deveraux',
     role: 'Co-fondatrice',
     company: 'Alpine Retreats',
     avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
@@ -164,8 +164,12 @@ const faqs = [
   },
 ];
 
-const logos = [
-  'Airbnb', 'Booking.com', 'Vrbo', 'Abritel', 'Expedia', 'HomeAway'
+const platformLogos = [
+  { name: 'Booking.com', color: 'text-blue-600' },
+  { name: 'Airbnb', color: 'text-rose-500' },
+  { name: 'Abritel', color: 'text-blue-700' },
+  { name: 'Tripadvisor', color: 'text-green-600' },
+  { name: 'Expedia', color: 'text-yellow-600' },
 ];
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
@@ -217,7 +221,7 @@ export function Landing() {
               </span>
             </h1>
             <p className="mt-8 text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Synchronisation multi-plateformes, automatisation des tâches, messagerie centralisée : Pilotez votre activité avec un suivi et des rapports en temps réel
+              Moins de gestion, plus de location. Synchronisation multi-plateformes, automatisation des tâches, messagerie centralisée : Pilotez votre activité avec un suivi et des rapports en temps réel
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup">
@@ -280,9 +284,9 @@ export function Landing() {
             Intégrations avec vos plateformes favorites
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-            {logos.map((logo) => (
-              <div key={logo} className="text-xl font-bold text-gray-300 hover:text-primary-blue transition-colors">
-                {logo}
+            {platformLogos.map((platform) => (
+              <div key={platform.name} className={`text-2xl font-bold ${platform.color} hover:opacity-70 transition-opacity`}>
+                {platform.name}
               </div>
             ))}
           </div>
@@ -457,6 +461,21 @@ export function Landing() {
                     </p>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-y border-gray-200">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-center text-sm font-medium text-gray-400 mb-8 tracking-wider uppercase">
+            Ils nous font confiance
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
+            {platformLogos.map((platform) => (
+              <div key={platform.name} className={`text-3xl font-bold ${platform.color} hover:opacity-70 transition-opacity`}>
+                {platform.name}
               </div>
             ))}
           </div>

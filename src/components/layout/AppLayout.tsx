@@ -9,17 +9,78 @@ import {
   Menu,
   X,
   ChevronRight,
-  Building2
+  Building2,
+  Calendar,
+  MessageSquare,
+  Shuffle,
+  ClipboardCheck,
+  Wrench,
+  AlertCircle,
+  Calculator,
+  DollarSign,
+  FileText,
+  Receipt,
+  Package,
+  Bell,
+  History,
+  TrendingUp,
+  PieChart,
+  FileSpreadsheet,
+  ChevronDown
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import { ChatBot } from '../chat/ChatBot';
 
-const navigation = [
-  { name: 'Tableau de bord', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Analytiques', href: '/analytics', icon: BarChart3 },
-  { name: 'Projets', href: '/projects', icon: FolderKanban },
-  { name: 'Equipe', href: '/team', icon: Users },
+const navigationSections = [
+  {
+    title: 'Principal',
+    items: [
+      { name: 'Tableau de bord', href: '/dashboard', icon: LayoutDashboard },
+      { name: 'Analytiques', href: '/analytics', icon: BarChart3 },
+    ],
+  },
+  {
+    title: 'PMS',
+    items: [
+      { name: 'Multi-plateformes', href: '/platforms', icon: Shuffle },
+      { name: 'Calendrier unifié', href: '/calendar', icon: Calendar },
+      { name: 'Automatisation messages', href: '/automation', icon: MessageSquare },
+    ],
+  },
+  {
+    title: 'Gestion Opérationnelle',
+    items: [
+      { name: 'Planning équipes ménage', href: '/cleaning', icon: ClipboardCheck },
+      { name: 'États des lieux digitalisés', href: '/inspections', icon: FileText },
+      { name: 'Gestion incidents', href: '/incidents', icon: Wrench },
+    ],
+  },
+  {
+    title: 'Comptabilité Française',
+    items: [
+      { name: 'Reversement propriétaire', href: '/payments', icon: DollarSign },
+      { name: 'Calcul commission', href: '/commissions', icon: Calculator },
+      { name: 'Export comptable', href: '/exports', icon: FileSpreadsheet },
+      { name: 'Factures automatiques', href: '/invoices', icon: Receipt },
+    ],
+  },
+  {
+    title: 'Stock & Linge',
+    items: [
+      { name: 'Suivi kits', href: '/kits', icon: Package },
+      { name: 'Alertes seuil stock', href: '/stock-alerts', icon: Bell },
+      { name: 'Historique rotation', href: '/rotation', icon: History },
+    ],
+  },
+  {
+    title: 'Dashboard Propriétaire',
+    items: [
+      { name: 'Revenus temps réel', href: '/owner-revenue', icon: TrendingUp },
+      { name: 'Taux occupation', href: '/owner-occupancy', icon: PieChart },
+      { name: 'Rapport mensuel', href: '/owner-reports', icon: FileText },
+    ],
+  },
 ];
 
 const secondaryNavigation = [
@@ -38,30 +99,61 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
   const navigate = useNavigate();
   const { user, profile, signOut } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [expandedSections, setExpandedSections] = useState<string[]>(['Principal']);
 
   const handleSignOut = async () => {
     await signOut();
     navigate('/');
   };
 
+  const toggleSection = (sectionTitle: string) => {
+    setExpandedSections(prev =>
+      prev.includes(sectionTitle)
+        ? prev.filter(s => s !== sectionTitle)
+        : [...prev, sectionTitle]
+    );
+  };
+
   const displayName = profile?.full_name || user?.email?.split('@')[0] || 'Utilisateur';
   const initials = displayName.slice(0, 2).toUpperCase();
 
-  const NavLink = ({ item, onClick }: { item: typeof navigation[0]; onClick?: () => void }) => {
+  const NavLink = ({ item, onClick }: { item: any; onClick?: () => void }) => {
     const isActive = location.pathname === item.href;
     return (
       <Link
         to={item.href}
         onClick={onClick}
-        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+        className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
           isActive
             ? 'bg-slate-900 text-white'
             : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
         }`}
       >
-        <item.icon className="w-5 h-5" />
+        <item.icon className="w-4 h-4" />
         {item.name}
       </Link>
+    );
+  };
+
+  const NavSection = ({ section, onClick }: { section: typeof navigationSections[0]; onClick?: () => void }) => {
+    const isExpanded = expandedSections.includes(section.title);
+    return (
+      <div>
+        <button
+          onClick={() => toggleSection(section.title)}
+          className="flex items-center justify-between w-full px-3 py-2 text-xs font-semibold text-slate-400 hover:text-slate-600 transition-colors uppercase tracking-wide"
+        >
+          <span>{section.title}</span>
+          <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+        </button>
+        {isExpanded && (
+          <div className="space-y-1 mt-1">
+            {section.items.map((item) => (
+              <NavLink key={item.href} item={item} onClick={onClick} />
+            ))}
+          </div>
+        )}
+      </div>
     );
   };
 
@@ -89,8 +181,8 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
             className="absolute inset-0 bg-slate-900/50"
             onClick={() => setSidebarOpen(false)}
           />
-          <div className="absolute left-0 top-0 bottom-0 w-72 bg-white">
-            <div className="h-16 flex items-center justify-between px-4 border-b border-slate-200">
+          <div className="absolute left-0 top-0 bottom-0 w-72 bg-white flex flex-col">
+            <div className="h-16 flex items-center justify-between px-4 border-b border-slate-200 flex-shrink-0">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
                   <Building2 className="w-5 h-5 text-white" />
@@ -104,9 +196,9 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <nav className="p-4 space-y-1">
-              {navigation.map((item) => (
-                <NavLink key={item.href} item={item} onClick={() => setSidebarOpen(false)} />
+            <nav className="p-4 space-y-3 overflow-y-auto flex-1">
+              {navigationSections.map((section) => (
+                <NavSection key={section.title} section={section} onClick={() => setSidebarOpen(false)} />
               ))}
               <div className="pt-4 mt-4 border-t border-slate-200 space-y-1">
                 {secondaryNavigation.map((item) => (
@@ -126,9 +218,9 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
           <span className="font-semibold text-slate-900">StayPilot</span>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1">
-          {navigation.map((item) => (
-            <NavLink key={item.href} item={item} />
+        <nav className="flex-1 p-4 space-y-3 overflow-y-auto">
+          {navigationSections.map((section) => (
+            <NavSection key={section.title} section={section} />
           ))}
         </nav>
 
