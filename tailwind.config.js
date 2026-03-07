@@ -4,19 +4,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        'deep-blue': '#0B1C2D',
-        'electric-violet': '#6C4DFF',
-        'black-intense': '#000000',
+        'primary-blue': '#2563EB',
+        'primary-green': '#10B981',
+        'accent-yellow': '#FBBF24',
+        'light-gray': '#F9FAFB',
+        'medium-gray': '#E5E7EB',
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #0B1C2D 0%, #6C4DFF 100%)',
-        'gradient-glow': 'radial-gradient(circle at 50% 50%, rgba(108, 77, 255, 0.15), transparent 70%)',
+        'gradient-soft-blue': 'linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)',
+        'gradient-blue-green': 'linear-gradient(120deg, #2563EB 0%, #10B981 100%)',
+        'gradient-light': 'linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%)',
       },
       boxShadow: {
-        'neon-sm': '0 0 10px rgba(108, 77, 255, 0.3)',
-        'neon': '0 0 20px rgba(108, 77, 255, 0.5)',
-        'neon-lg': '0 0 30px rgba(108, 77, 255, 0.6)',
-        'glow': '0 4px 20px rgba(108, 77, 255, 0.25)',
+        'soft': '0 1px 3px rgba(0, 0, 0, 0.08)',
+        'medium': '0 4px 12px rgba(0, 0, 0, 0.06)',
+        'large': '0 10px 30px rgba(0, 0, 0, 0.08)',
+        'colored': '0 4px 20px rgba(37, 99, 235, 0.12)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

@@ -9,11 +9,11 @@
   }
 
   body {
-    @apply bg-black-intense text-white;
+    @apply bg-white text-gray-900;
   }
 
   ::selection {
-    @apply bg-electric-violet text-white;
+    @apply bg-primary-blue/20 text-gray-900;
   }
 
   * {
@@ -27,18 +27,6 @@
 
 @layer components {
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-electric-violet focus:ring-offset-2 focus:ring-offset-black-intense;
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-400 via-electric-violet to-purple-500 bg-clip-text text-transparent;
-  }
-
-  .glass-effect {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
-  }
-
-  .neon-border {
-    @apply border border-electric-violet/30 shadow-neon;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-blue focus:ring-offset-2 focus:ring-offset-white;
   }
 }

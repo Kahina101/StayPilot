@@ -109,20 +109,20 @@ export function PublicHeader() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-neon">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-500 rounded-xl flex items-center justify-center shadow-soft">
               <LayoutDashboard className="w-6 h-6 text-white" />
             </div>
-            <span className="font-bold text-xl text-white">StayPilot</span>
+            <span className="font-bold text-xl text-gray-900">StayPilot</span>
           </Link>
 
           <div className="flex items-center gap-4">
             <Link to="/login">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="text-gray-700 hover:text-gray-900">
                 Connexion
               </Button>
             </Link>
             <Link to="/signup">
-              <Button size="sm">
+              <Button size="sm" className="bg-primary-blue hover:bg-blue-700 text-white">
                 Commencer
               </Button>
             </Link>
