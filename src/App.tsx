@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { PageLoader } from './components/ui/Spinner';
-import { Landing, Login, Signup, ForgotPassword, Dashboard, Analytics, Projects, Team, Settings } from './pages';
+import { Landing, Login, Signup, ForgotPassword, Dashboard, Analytics, Projects, Team, Settings, Pricing, Checkout, FAQ, Contact } from './pages';
 
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -22,6 +22,9 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/contact" element={<Contact />} />
 
       <Route
         path="/login"
@@ -47,6 +50,15 @@ function AppRoutes() {
           <PublicRoute>
             <ForgotPassword />
           </PublicRoute>
+        }
+      />
+
+      <Route
+        path="/checkout"
+        element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
         }
       />
 

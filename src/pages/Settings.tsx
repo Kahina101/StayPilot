@@ -1,71 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../lib/supabase';
 import { AppLayout } from '../components/layout/AppLayout';
+import { LicenseManagement } from '../components/LicenseManagement';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, Button, Input, Alert } from '../components/ui';
 import {
   User,
   Shield,
   Save,
-  CreditCard,
   AlertTriangle,
   LogOut,
   Trash2,
   Bell,
-  CheckCircle,
   X,
-  Check,
-  Sparkles
 } from 'lucide-react';
-
-const pricingPlans = [
-  {
-    name: 'Starter',
-    price: 29,
-    description: 'Pour les petites equipes qui debutent',
-    features: [
-      '5 membres max',
-      '10 projets',
-      '5 Go de stockage',
-      'Support par email',
-      'Rapports basiques',
-    ],
-    popular: false,
-  },
-  {
-    name: 'Business',
-    price: 79,
-    description: 'Pour les equipes en croissance',
-    features: [
-      '25 membres max',
-      'Projets illimites',
-      '50 Go de stockage',
-      'Support prioritaire',
-      'Rapports avances',
-      'Integrations API',
-      'SSO',
-    ],
-    popular: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 199,
-    description: 'Pour les grandes organisations',
-    features: [
-      'Membres illimites',
-      'Projets illimites',
-      'Stockage illimite',
-      'Support dedie 24/7',
-      'Rapports personnalises',
-      'API complete',
-      'SSO + SAML',
-      'SLA garanti',
-      'Formation incluse',
-    ],
-    popular: false,
-  },
-];
 
 export function Settings() {
   const { user, profile, updateProfile, signOut } = useAuth();
@@ -77,12 +25,8 @@ export function Settings() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  const [showCancelModal, setShowCancelModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showPricingModal, setShowPricingModal] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState('');
-  const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
-  const [checkoutError, setCheckoutError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,41 +57,6 @@ export function Settings() {
   const handleDeleteAccount = async () => {
     if (deleteConfirmation !== 'SUPPRIMER') return;
     setShowDeleteModal(false);
-  };
-
-  const handleSelectPlan = async (planName: string) => {
-    const plan = planName.toLowerCase() as 'starter' | 'business' | 'enterprise';
-    setCheckoutLoading(plan);
-    setCheckoutError('');
-
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      const token = session?.access_token;
-
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/stripeCheckout`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token ?? import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          },
-          body: JSON.stringify({ plan }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok || !data.url) {
-        throw new Error(data.error || 'Impossible de creer la session de paiement.');
-      }
-
-      window.location.href = data.url;
-    } catch (err) {
-      setCheckoutError(err instanceof Error ? err.message : 'Une erreur est survenue.');
-    } finally {
-      setCheckoutLoading(null);
-    }
   };
 
   return (
@@ -311,55 +220,7 @@ export function Settings() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CreditCard className="w-5 h-5" />
-              Abonnement
-            </CardTitle>
-            <CardDescription>
-              Gerez votre abonnement et votre facturation
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="p-4 bg-slate-50 rounded-lg mb-6">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-slate-900">Plan Business</span>
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
-                  <CheckCircle className="w-3.5 h-3.5 mr-1" />
-                  Actif
-                </span>
-              </div>
-              <p className="text-sm text-slate-600 mb-4">
-                Votre abonnement se renouvelle le 16 mars 2026
-              </p>
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-bold text-slate-900">79</span>
-                <span className="text-slate-600">/mois</span>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <Button variant="outline" fullWidth onClick={() => setShowPricingModal(true)}>
-                Modifier le plan
-              </Button>
-              <Button variant="outline" fullWidth>
-                Gerer les moyens de paiement
-              </Button>
-              <Button variant="outline" fullWidth>
-                Telecharger les factures
-              </Button>
-              <Button
-                variant="ghost"
-                fullWidth
-                className="text-red-600 hover:bg-red-50 hover:text-red-700"
-                onClick={() => setShowCancelModal(true)}
-              >
-                Resilier l'abonnement
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <LicenseManagement />
 
         <Card className="border-slate-200">
           <CardHeader>
@@ -417,49 +278,6 @@ export function Settings() {
         </Card>
       </div>
 
-      {showCancelModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-slate-900/50"
-            onClick={() => setShowCancelModal(false)}
-          />
-          <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
-            <button
-              onClick={() => setShowCancelModal(false)}
-              className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-lg"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="text-center mb-6">
-              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <AlertTriangle className="w-6 h-6 text-yellow-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                Resilier votre abonnement ?
-              </h3>
-              <p className="text-slate-600 mt-2">
-                Vous perdrez l'acces aux fonctionnalites premium a la fin de votre periode de facturation actuelle.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <Button
-                variant="outline"
-                fullWidth
-                className="border-red-300 text-red-600 hover:bg-red-50"
-                onClick={() => setShowCancelModal(false)}
-              >
-                Confirmer la resiliation
-              </Button>
-              <Button fullWidth onClick={() => setShowCancelModal(false)}>
-                Garder mon abonnement
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {showDeleteModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
@@ -513,93 +331,6 @@ export function Settings() {
                 Annuler
               </Button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {showPricingModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-slate-900/50"
-            onClick={() => setShowPricingModal(false)}
-          />
-          <div className="relative bg-white rounded-2xl shadow-xl max-w-5xl w-full p-6 max-h-[90vh] overflow-y-auto">
-            <button
-              onClick={() => setShowPricingModal(false)}
-              className="absolute top-4 right-4 p-2 hover:bg-slate-100 rounded-lg z-10"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-slate-900">
-                Choisissez votre plan
-              </h3>
-              <p className="text-slate-600 mt-2">
-                Selectionnez le plan qui correspond le mieux a vos besoins
-              </p>
-            </div>
-
-            {checkoutError && (
-              <Alert variant="error" className="mb-6">
-                {checkoutError}
-              </Alert>
-            )}
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {pricingPlans.map((plan) => (
-                <div
-                  key={plan.name}
-                  className={`relative rounded-2xl border-2 p-6 transition-all ${
-                    plan.popular
-                      ? 'border-slate-900 shadow-lg scale-105'
-                      : 'border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 text-white">
-                        <Sparkles className="w-3 h-3" />
-                        Populaire
-                      </span>
-                    </div>
-                  )}
-
-                  <div className="text-center mb-6">
-                    <h4 className="text-lg font-semibold text-slate-900">{plan.name}</h4>
-                    <p className="text-sm text-slate-500 mt-1">{plan.description}</p>
-                    <div className="mt-4">
-                      <span className="text-4xl font-bold text-slate-900">{plan.price}</span>
-                      <span className="text-slate-600">/mois</span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    variant={plan.popular ? 'primary' : 'outline'}
-                    fullWidth
-                    disabled={checkoutLoading !== null}
-                    onClick={() => handleSelectPlan(plan.name)}
-                  >
-                    {checkoutLoading === plan.name.toLowerCase()
-                      ? 'Redirection...'
-                      : 'Choisir ce plan'}
-                  </Button>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-center text-sm text-slate-500 mt-6">
-              Tous les prix sont en euros HT. Annulation possible a tout moment.
-            </p>
           </div>
         </div>
       )}

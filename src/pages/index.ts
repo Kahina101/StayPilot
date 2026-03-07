@@ -7,3 +7,7 @@ export { Analytics } from './Analytics';
 export { Projects } from './Projects';
 export { Team } from './Team';
 export { Settings } from './Settings';
+export { Pricing } from './Pricing';
+export { Checkout } from './Checkout';
+export { FAQ } from './FAQ';
+export { Contact } from './Contact';
