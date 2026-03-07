@@ -52,9 +52,9 @@ const features = [
     description: 'Coordonnez vos équipes de ménage, maintenance et accueil avec des plannings intelligents.',
   },
   {
-    icon: FileText,
-    title: 'Documents automatisés',
-    description: 'Générez automatiquement contrats, factures et documents administratifs pour chaque réservation.',
+    icon: Lock,
+    title: 'Sécurité entreprise',
+    description: 'Protection des données, accès sécurisés et conformité RGPD pour une gestion fiable et professionnelle.',
   },
 ];
 
