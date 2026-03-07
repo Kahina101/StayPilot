@@ -271,7 +271,7 @@ export function Pricing() {
                 <h3 className="font-bold text-lg text-slate-900 mb-3">Offre A - Starter</h3>
                 <p className="text-3xl font-bold text-slate-900 mb-2">2 500 €</p>
                 <p className="text-sm text-slate-600 mb-3">Licence unique</p>
-                <p className="text-xl font-semibold text-blue-600 mb-2">79 €/mois</p>
+                <p className="text-xl font-semibold text-blue-600 mb-2">99 €/mois</p>
                 <p className="text-sm text-slate-600">Maintenance mensuelle</p>
               </div>
 
@@ -279,7 +279,7 @@ export function Pricing() {
                 <h3 className="font-bold text-lg mb-3">Offre B - Pro</h3>
                 <p className="text-3xl font-bold mb-2">5 000 €</p>
                 <p className="text-sm text-blue-100 mb-3">Licence unique</p>
-                <p className="text-xl font-semibold mb-2">149 €/mois</p>
+                <p className="text-xl font-semibold mb-2">199 €/mois</p>
                 <p className="text-sm text-blue-100 mb-3">Maintenance mensuelle</p>
                 <div className="bg-white/20 rounded-lg px-3 py-1 inline-block">
                   <p className="text-xs font-medium">Formation initiale incluse</p>
@@ -290,7 +290,7 @@ export function Pricing() {
                 <h3 className="font-bold text-lg text-slate-900 mb-3">Offre C - Premium</h3>
                 <p className="text-3xl font-bold text-slate-900 mb-2">9 000 €</p>
                 <p className="text-sm text-slate-600 mb-3">Licence unique</p>
-                <p className="text-xl font-semibold text-blue-600 mb-2">299 €/mois</p>
+                <p className="text-xl font-semibold text-blue-600 mb-2">349 €/mois</p>
                 <p className="text-sm text-slate-600 mb-3">Maintenance mensuelle</p>
                 <div className="bg-amber-100 border border-amber-300 rounded-lg px-3 py-1 inline-block">
                   <p className="text-xs font-medium text-amber-900">Support prioritaire + personnalisations</p>
