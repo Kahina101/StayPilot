@@ -11,3 +11,6 @@ export { Pricing } from './Pricing';
 export { Checkout } from './Checkout';
 export { FAQ } from './FAQ';
 export { Contact } from './Contact';
+export { Properties } from './Properties';
+export { Reservations } from './Reservations';
+export { Tasks } from './Tasks';

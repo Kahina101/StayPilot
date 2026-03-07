@@ -26,7 +26,9 @@ import {
   TrendingUp,
   PieChart,
   FileSpreadsheet,
-  ChevronDown
+  ChevronDown,
+  Home,
+  CheckSquare
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
@@ -57,7 +59,7 @@ const navigationSections = [
     ],
   },
   {
-    title: 'Comptabilité Française',
+    title: 'Comptabilité',
     items: [
       { name: 'Reversement propriétaire', href: '/payments', icon: DollarSign },
       { name: 'Calcul commission', href: '/commissions', icon: Calculator },
@@ -66,11 +68,24 @@ const navigationSections = [
     ],
   },
   {
-    title: 'Stock & Linge',
+    title: 'Location',
+    items: [
+      { name: 'Logements', href: '/properties', icon: Home },
+      { name: 'Réservations', href: '/reservations', icon: Calendar },
+    ],
+  },
+  {
+    title: 'Stock',
     items: [
       { name: 'Suivi kits', href: '/kits', icon: Package },
       { name: 'Alertes seuil stock', href: '/stock-alerts', icon: Bell },
       { name: 'Historique rotation', href: '/rotation', icon: History },
+    ],
+  },
+  {
+    title: 'Tâches',
+    items: [
+      { name: 'Liste des tâches', href: '/tasks', icon: CheckSquare },
     ],
   },
   {
@@ -167,10 +182,7 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
           <Menu className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-semibold text-slate-900">StayPilot</span>
+          <img src="/TEST_LOGO.jpg" alt="StayPilot" className="h-8" />
         </div>
         <div className="w-10" />
       </div>
@@ -184,10 +196,7 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
           <div className="absolute left-0 top-0 bottom-0 w-72 bg-white flex flex-col">
             <div className="h-16 flex items-center justify-between px-4 border-b border-slate-200 flex-shrink-0">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-white" />
-                </div>
-                <span className="font-semibold text-slate-900">StayPilot</span>
+                <img src="/TEST_LOGO.jpg" alt="StayPilot" className="h-8" />
               </div>
               <button
                 onClick={() => setSidebarOpen(false)}
@@ -212,10 +221,7 @@ export function AppLayout({ children, title, description, actions }: AppLayoutPr
 
       <aside className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-64 lg:flex-col bg-white border-r border-slate-200">
         <div className="h-16 flex items-center gap-2 px-6 border-b border-slate-200">
-          <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-semibold text-slate-900">StayPilot</span>
+          <img src="/TEST_LOGO.jpg" alt="StayPilot" className="h-8" />
         </div>
 
         <nav className="flex-1 p-4 space-y-3 overflow-y-auto">

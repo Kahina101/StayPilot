@@ -139,34 +139,88 @@ export function Dashboard() {
         <Card className="lg:col-span-2 bg-white border-gray-200">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-gray-900">
-              <Activity className="w-5 h-5 text-primary-blue" />
-              Activite recente
+              <Calendar className="w-5 h-5 text-primary-blue" />
+              Calendrier des réservations
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {recentActivity.map((activity) => (
-                <div
-                  key={activity.id}
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-blue-50 transition-colors group"
-                >
-                  <div className="p-2 bg-blue-50 rounded-lg group-hover:shadow-soft transition-all">
-                    <activity.icon className="w-4 h-4 text-primary-blue" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {activity.action}
-                    </p>
-                    <p className="text-xs text-gray-500">{activity.time}</p>
-                  </div>
+            <div className="grid grid-cols-7 gap-2 mb-4">
+              {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((day) => (
+                <div key={day} className="text-center text-xs font-semibold text-gray-500 py-2">
+                  {day}
                 </div>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-gray-200">
-              <Button variant="ghost" size="sm" className="w-full">
-                Voir toute l'activite
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+            <div className="grid grid-cols-7 gap-2">
+              {[
+                { day: 1, type: 'empty' },
+                { day: 2, type: 'empty' },
+                { day: 3, type: 'empty' },
+                { day: 4, type: 'checkout', property: 'Apt. Lyon' },
+                { day: 5, type: 'available' },
+                { day: 6, type: 'checkin', property: 'Studio Paris' },
+                { day: 7, type: 'occupied' },
+                { day: 8, type: 'occupied' },
+                { day: 9, type: 'occupied' },
+                { day: 10, type: 'checkout', property: 'Villa Nice' },
+                { day: 11, type: 'available' },
+                { day: 12, type: 'available' },
+                { day: 13, type: 'checkin', property: 'Loft Bordeaux' },
+                { day: 14, type: 'occupied' },
+                { day: 15, type: 'occupied' },
+                { day: 16, type: 'occupied' },
+                { day: 17, type: 'checkout', property: 'T2 Marseille' },
+                { day: 18, type: 'available' },
+                { day: 19, type: 'available' },
+                { day: 20, type: 'checkin', property: 'Apt. Cannes' },
+                { day: 21, type: 'occupied' },
+                { day: 22, type: 'occupied' },
+                { day: 23, type: 'occupied' },
+                { day: 24, type: 'occupied' },
+                { day: 25, type: 'checkout', property: 'Studio Lyon' },
+                { day: 26, type: 'available' },
+                { day: 27, type: 'available' },
+                { day: 28, type: 'checkin', property: 'T3 Paris' },
+                { day: 29, type: 'occupied' },
+                { day: 30, type: 'occupied' },
+                { day: 31, type: 'occupied' },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={`aspect-square p-1 rounded-lg text-xs flex flex-col items-center justify-center transition-all cursor-pointer ${
+                    item.type === 'empty' ? 'bg-transparent' :
+                    item.type === 'checkin' ? 'bg-green-100 border border-green-300 hover:bg-green-200' :
+                    item.type === 'checkout' ? 'bg-red-100 border border-red-300 hover:bg-red-200' :
+                    item.type === 'occupied' ? 'bg-blue-100 border border-blue-300 hover:bg-blue-200' :
+                    'bg-gray-50 hover:bg-gray-100'
+                  }`}
+                  title={item.property || ''}
+                >
+                  <span className={`font-semibold ${item.type === 'empty' ? 'text-gray-300' : 'text-gray-900'}`}>
+                    {item.day}
+                  </span>
+                  {item.type === 'checkin' && <span className="text-[8px] text-green-700">IN</span>}
+                  {item.type === 'checkout' && <span className="text-[8px] text-red-700">OUT</span>}
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-200 flex flex-wrap gap-3 text-xs">
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-green-100 border border-green-300 rounded"></div>
+                <span className="text-gray-600">Check-in</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-red-100 border border-red-300 rounded"></div>
+                <span className="text-gray-600">Check-out</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-blue-100 border border-blue-300 rounded"></div>
+                <span className="text-gray-600">Occupé</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-gray-50 rounded"></div>
+                <span className="text-gray-600">Disponible</span>
+              </div>
             </div>
           </CardContent>
         </Card>

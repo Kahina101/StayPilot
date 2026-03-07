@@ -473,11 +473,11 @@ export function Landing() {
             Ils nous font confiance
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
-            {platformLogos.map((platform) => (
-              <div key={platform.name} className={`text-3xl font-bold ${platform.color} hover:opacity-70 transition-opacity`}>
-                {platform.name}
-              </div>
-            ))}
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Booking.com_logo.svg" alt="Booking.com" className="h-10 opacity-60 hover:opacity-100 transition-opacity" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" className="h-10 opacity-60 hover:opacity-100 transition-opacity" />
+            <img src="https://logos-world.net/wp-content/uploads/2021/08/Abritel-Logo.png" alt="Abritel" className="h-12 opacity-60 hover:opacity-100 transition-opacity" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/TripAdvisor_Logo.svg" alt="Tripadvisor" className="h-10 opacity-60 hover:opacity-100 transition-opacity" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Expedia_Logo.svg" alt="Expedia" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
           </div>
         </div>
       </section>
