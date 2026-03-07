@@ -16,53 +16,53 @@ import {
 
 const quickStats = [
   {
-    label: 'Projets actifs',
-    value: '12',
-    change: '+2 ce mois',
+    label: 'Revenus ce mois',
+    value: '24 500 €',
+    change: '+12,5%',
+    icon: TrendingUp,
+  },
+  {
+    label: 'Taux occupation',
+    value: '87%',
+    change: '+5,2%',
     icon: FolderKanban,
   },
   {
-    label: 'Membres equipe',
-    value: '8',
-    change: '+1 cette semaine',
-    icon: Users,
-  },
-  {
-    label: 'Taches terminees',
-    value: '47',
-    change: '+12 cette semaine',
+    label: 'Note moyenne',
+    value: '4.8/5',
+    change: '+0,2',
     icon: CheckCircle2,
   },
   {
-    label: 'Taux completion',
-    value: '78%',
-    change: '+5% vs mois dernier',
-    icon: TrendingUp,
+    label: 'Logements actifs',
+    value: '32',
+    change: '+4',
+    icon: Users,
   },
 ];
 
 const recentActivity = [
   {
     id: 1,
-    action: 'Projet "Refonte site" mis a jour',
+    action: 'Nouvelle reservation - Appartement Lyon Centre',
     time: 'Il y a 2 heures',
-    icon: FolderKanban,
-  },
-  {
-    id: 2,
-    action: 'Marie Dupont a rejoint l\'equipe',
-    time: 'Il y a 5 heures',
-    icon: Users,
-  },
-  {
-    id: 3,
-    action: 'Tache "Design maquettes" terminee',
-    time: 'Hier',
     icon: CheckCircle2,
   },
   {
+    id: 2,
+    action: 'Paiement recu - 1 850 €',
+    time: 'Il y a 5 heures',
+    icon: TrendingUp,
+  },
+  {
+    id: 3,
+    action: 'Nouveau locataire verifie et approuve',
+    time: 'Hier',
+    icon: Users,
+  },
+  {
     id: 4,
-    action: 'Nouveau rapport analytique disponible',
+    action: 'Rapport mensuel genere avec succes',
     time: 'Il y a 2 jours',
     icon: BarChart3,
   },
@@ -71,26 +71,26 @@ const recentActivity = [
 const upcomingTasks = [
   {
     id: 1,
-    title: 'Reunion equipe produit',
+    title: 'Check-out appartement Marseille',
     dueDate: 'Aujourd\'hui, 14h00',
     priority: 'high',
   },
   {
     id: 2,
-    title: 'Revue de code sprint 12',
+    title: 'Visite technique studio Paris 15',
     dueDate: 'Demain, 10h00',
     priority: 'medium',
   },
   {
     id: 3,
-    title: 'Livraison maquettes v2',
-    dueDate: '18 fevrier',
+    title: 'Renouvellement bail - M. Durand',
+    dueDate: '18 mars',
     priority: 'high',
   },
   {
     id: 4,
-    title: 'Point client mensuel',
-    dueDate: '20 fevrier',
+    title: 'Rapport trimestriel proprietaires',
+    dueDate: '20 mars',
     priority: 'low',
   },
 ];
