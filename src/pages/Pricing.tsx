@@ -163,7 +163,7 @@ export function Pricing() {
               <div
                 key={tier.tier}
                 className={`relative rounded-2xl shadow-lg overflow-hidden ${
-                  isPro ? 'bg-gradient-to-br from-blue-600 to-blue-400 text-white' : 'bg-white'
+                  isPro ? 'bg-gradient-to-br from-blue-600 to-teal-400 text-white' : 'bg-white'
                 }`}
               >
                 <div className="p-8">
@@ -185,7 +185,7 @@ export function Pricing() {
                       <div>
                         <div className={`flex items-baseline gap-1 mb-2 ${isPro ? 'text-white' : 'text-slate-900'}`}>
                           <span className="text-5xl font-bold">
-                            {(tier.maintenancePricing!.first_year_price / 100).toFixed(0)}€
+                            {(tier.perpetual_price / 100).toFixed(0)}€
                           </span>
                           <span className="text-lg">/mois</span>
                         </div>
